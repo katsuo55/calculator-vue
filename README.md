@@ -27,3 +27,6 @@ yarn test
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### 公開URL
+https://katsuo55.github.io/calculator-static/
