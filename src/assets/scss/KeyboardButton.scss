@@ -1,0 +1,29 @@
+.m-keyboardButton {
+  display: block;
+  width: 23.5vw;
+  margin: 0.5px;
+  line-height: 15vh;
+  position: relative;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #202124;
+  background: #f1f3f4;/*色*/
+  opacity: 0.8;
+  font-weight: bold;
+  border: 1px solid #f1f3f4;
+
+  &:hover {
+    background: #e8eaeb;
+    border-color: #e8eaeb;
+  }
+
+  &:focus-ring {
+    color: #202124;
+    border: 1px solid #f1f3f4;
+  }
+
+  &:active {
+    color: #202124;
+    border: 1px solid #bdc1c6;
+  }
+}

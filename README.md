@@ -1,4 +1,4 @@
-# my-currency
+# 電卓
 
 ## Project setup
 ```
@@ -18,6 +18,11 @@ yarn build
 ### Lints and fixes files
 ```
 yarn lint
+```
+
+### Test
+```
+yarn test
 ```
 
 ### Customize configuration
