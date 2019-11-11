@@ -9,7 +9,11 @@ export default {
   name: 'DecimalPointButton',
   methods: {
     click: function () {
-      this.$store.commit('KeyboardStore/addDecimalPoint')
+      // 数式設定
+      this.$store.commit('KeyboardStore/setFormula', {
+        formula: `${this.$store.getters.formula}.`
+      })
+      this.$store.commit('KeyboardStore/setIsInput', { isInput: true })
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="l-clearButton">
-    <a class="m-clearButton m-keyboardButton" @click="clear">AC</a>
+    <a class="m-clearButton m-keyboardButton" @click="click">AC</a>
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: 'ClearButton',
   methods: {
-    clear: function () {
+    click: function () {
       this.$store.commit('KeyboardStore/clear')
     }
   }

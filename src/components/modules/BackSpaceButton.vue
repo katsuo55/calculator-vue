@@ -9,7 +9,12 @@ export default {
   name: 'BackSpaceButton',
   methods: {
     click: function () {
-      this.$store.commit('KeyboardStore/backspace')
+      const formula = this.$store.getters.formula.slice(0, -1)
+      // 数式設定
+      this.$store.commit('KeyboardStore/setFormula', { formula })
+      this.$store.commit('KeyboardStore/setIsInput', { isInput: true })
+      // 合計値更新
+      this.$store.dispatch('KeyboardStore/updateAmount')
     }
   }
 }

@@ -10,7 +10,11 @@ export default {
   props: ['brackets'],
   methods: {
     click: function () {
-      this.$store.commit('KeyboardStore/addBrackets', { brackets: this.brackets })
+      // 数式設定
+      this.$store.commit('KeyboardStore/setFormula', {
+        formula: `${this.$store.getters.formula}${this.brackets}`
+      })
+      this.$store.commit('KeyboardStore/setIsInput', { isInput: true })
     }
   }
 }

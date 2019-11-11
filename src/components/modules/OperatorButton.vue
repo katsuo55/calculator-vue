@@ -12,7 +12,11 @@ export default {
   props: ['operator'],
   methods: {
     click: function () {
-      this.$store.commit('KeyboardStore/addOperator', { operator: this.operator })
+      // 数式設定
+      this.$store.commit('KeyboardStore/setFormula', {
+        formula: `${this.$store.getters.formula}${this.operator}`
+      })
+      this.$store.commit('KeyboardStore/setIsInput', { isInput: true })
     }
   }
 }

@@ -9,7 +9,8 @@ export default {
   name: 'EqualButton',
   methods: {
     click: function () {
-      this.$store.commit('KeyboardStore/calculation')
+      // 合計値計算
+      this.$store.dispatch('KeyboardStore/calculate')
     }
   }
 }

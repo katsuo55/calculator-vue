@@ -21,74 +21,52 @@ const getters = {
 }
 
 // actions
-const actions = {}
-
-// mutations
-const mutations = {
-  addNumber(state, { number }) {
-    state.isInput = true
-    state.formula += `${number}`
+const actions = {
+  updateAmount({ commit, state }) {
     const isCheck = ReversePolishNotation.checkFormula(state.formula)
     if (!isCheck) {
       return
     }
     try {
       const list = ReversePolishNotation.convert(state.formula)
-      state.amount = ReversePolishNotation.calculation(list)
+      const amount = '' + ReversePolishNotation.calculation(list)
+      commit('setAmount', { amount })
     } catch (e) {
-      state.amount = 'エラー'
+      commit('setAmount', { amount: 'エラー' })
     }
   },
-  addOperator(state, { operator }) {
-    state.isInput = true
-    state.formula += `${operator}`
-  },
-  addDecimalPoint(state) {
-    state.isInput = true
-    state.formula += '.'
-  },
-  addBrackets(state, { brackets }) {
-    state.isInput = true
-    state.formula += `${brackets}`
-
-    const isCheck = ReversePolishNotation.checkFormula(state.formula)
-    if (!isCheck) {
-      return
-    }
-    try {
-      const list = ReversePolishNotation.convert(state.formula)
-      state.amount = ReversePolishNotation.calculation(list)
-    } catch (e) {
-      state.amount = 'エラー'
-    }
-  },
-  calculation(state) {
-    state.isInput = true
+  calculate({ commit, state }) {
     if (!state.formula) {
       return
     }
+    commit('setIsInput', { isInput: true })
     const isCheck = ReversePolishNotation.checkFormula(state.formula)
     if (!isCheck) {
-      state.amount = 'エラー'
+      commit('setAmount', { amount: 'エラー' })
       return
     }
     try {
       const list = ReversePolishNotation.convert(state.formula)
       const amount = ReversePolishNotation.calculation(list)
-      state.formula = `${amount}`
-      state.amount = `${amount}`
+
+      commit('setAmount', { amount: `${amount}` })
+      commit('setFormula', { formula: `${amount}` })
     } catch (e) {
-      state.amount = 'エラー'
+      commit('setAmount', { amount: 'エラー' })
     }
+  }
+}
+
+// mutations
+const mutations = {
+  setIsInput(state, { isInput }) {
+    state.isInput = isInput
   },
-  backspace(state) {
-    state.isInput = true
-    state.formula = state.formula.slice(0, -1)
-    const isCheck = ReversePolishNotation.checkFormula(state.formula)
-    if (isCheck) {
-      const list = ReversePolishNotation.convert(state.formula)
-      state.amount = ReversePolishNotation.calculation(list)
-    }
+  setFormula(state, { formula }) {
+    state.formula = `${formula}`
+  },
+  setAmount(state, { amount }) {
+    state.amount = `${amount}`
   },
   clear(state) {
     state.isInput = false
